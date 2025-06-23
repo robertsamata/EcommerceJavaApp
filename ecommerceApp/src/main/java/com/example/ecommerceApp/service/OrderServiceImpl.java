@@ -27,7 +27,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order createOrder(Order order) {
-        // Verifică dacă Address are ID, încarcă-l din DB
         if (order.getAddress() != null && order.getAddress().getId() != null) {
             Address existingAddress = addressRepository.findById(order.getAddress().getId())
                     .orElseThrow(() -> new RuntimeException("Address not found with id: " + order.getAddress().getId()));
@@ -36,11 +35,11 @@ public class OrderServiceImpl implements OrderService {
             throw new RuntimeException("Order must have an existing address with id");
         }
 
-        // Configurează relația inversă pentru OrderItems, dacă există
+
         if (order.getOrderItems() != null && !order.getOrderItems().isEmpty()) {
             Set<OrderItem> managedOrderItems = new HashSet<>();
             for (OrderItem item : order.getOrderItems()) {
-                item.setOrder(order); // setează relația inversă
+                item.setOrder(order);
                 managedOrderItems.add(item);
             }
             order.setOrderItems(managedOrderItems);
