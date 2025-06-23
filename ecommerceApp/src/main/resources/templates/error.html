@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Eroare</title>
+    <meta charset="UTF-8" />
+    <style>
+        body { font-family: Arial, sans-serif; background-color: #f8d7da; color: #721c24; padding: 20px; }
+        .container { max-width: 600px; margin: auto; background: #f5c6cb; border-radius: 5px; padding: 20px; }
+        h1 { color: #721c24; }
+        a { text-decoration: none; color: #004085; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>A apărut o eroare!</h1>
+    <p th:text="${errorMessage}">Mesajul de eroare va apărea aici.</p>
+    <a href="/" >Înapoi la pagina principală</a>
+</div>
+</body>
+</html>
