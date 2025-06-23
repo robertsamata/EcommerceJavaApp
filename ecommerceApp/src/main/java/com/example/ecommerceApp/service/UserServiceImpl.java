@@ -47,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
         User user = new User();
         user.setUsername(username);
-        user.setPassword(password); // fără hashing pentru demo
+        user.setPassword(password); //
         user.setRole(role.toUpperCase());
 
         return userRepository.save(user);
