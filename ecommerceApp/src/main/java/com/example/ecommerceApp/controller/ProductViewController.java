@@ -24,7 +24,7 @@ public class ProductViewController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    // Afiseaza formularul de creare produs
+
     @GetMapping("/new")
     public String showCreateForm(Model model) {
         model.addAttribute("product", new Product());
@@ -32,7 +32,7 @@ public class ProductViewController {
         return "product-form";
     }
 
-    // Primeste formularul, valideaza si salveaza produsul
+
     @PostMapping
     public String createProduct(@Valid @ModelAttribute("product") Product product,
                                 BindingResult bindingResult,
@@ -45,21 +45,21 @@ public class ProductViewController {
             return "product-form";
         }
 
-        // Seteaza categoriile selectate
+
         Set<Category> categories = new HashSet<>();
         if (categoryIds != null) {
             categories.addAll(categoryRepository.findAllById(categoryIds));
         }
         product.setCategories(categories);
 
-        // Salveaza produsul in baza de date
+
         productRepository.save(product);
 
-        // Redirect la lista produse dupa salvare
+
         return "redirect:/products";
     }
 
-    // Afiseaza lista produselor
+
     @GetMapping
     public String listProducts(Model model) {
         model.addAttribute("products", productRepository.findAll());
