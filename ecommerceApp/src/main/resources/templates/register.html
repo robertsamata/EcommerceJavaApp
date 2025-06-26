@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register</title>
+    <meta charset="UTF-8">
+    <style>
+        .error { color: red; }
+    </style>
+</head>
+<body>
+<h2>Register</h2>
+
+<form th:action="@{/register}" th:object="${registerRequest}" method="post">
+    <label>Username:</label>
+    <input type="text" th:field="*{username}" />
+
+    <label>Password:</label>
+    <input type="password" th:field="*{password}" />
+
+    <label>Role:</label>
+    <select th:field="*{role}">
+        <option value="CLIENT">CLIENT</option>
+        <option value="ADMIN">ADMIN</option>
+    </select>
+
+    <button type="submit">Register</button>
+</form>
+
+<!-- Afișare eroare dacă există -->
+<div th:if="${error}" th:text="${error}" style="color:red"></div>
+
+
+    <button type="submit">Register</button>
+</form>
+
+</body>
+</html>

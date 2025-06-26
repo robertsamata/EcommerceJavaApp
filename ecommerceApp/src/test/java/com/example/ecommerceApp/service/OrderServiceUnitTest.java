@@ -34,7 +34,7 @@ public class OrderServiceUnitTest {
 
     @Test
     @Commit
-    void testCreateOrder_Success() {
+    void testCreateOrder_Success() { // testam crearea unei comenzi
         Address address = new Address();
         address.setId(1L);
 
@@ -55,7 +55,7 @@ public class OrderServiceUnitTest {
 
     @Test
     @Commit
-    void testGetOrderById_Found() {
+    void testGetOrderById_Found() { //testam cautarea unei comenzi
         Order order = new Order();
         order.setId(1L);
 
@@ -69,7 +69,7 @@ public class OrderServiceUnitTest {
 
     @Test
     @Commit
-    void testGetOrderById_NotFound() {
+    void testGetOrderById_NotFound() { //cautarea unei comenzi cand nu exista
         when(orderRepository.findById(2L)).thenReturn(Optional.empty());
 
         Optional<Order> result = orderService.getOrderById(2L);

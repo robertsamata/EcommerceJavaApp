@@ -19,6 +19,7 @@ public class User {
     @OneToOne(cascade = CascadeType.ALL)
     private Address address;
 
+    public User() {}
 
     public Long getId() {
         return id;

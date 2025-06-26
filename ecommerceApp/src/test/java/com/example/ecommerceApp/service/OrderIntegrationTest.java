@@ -56,7 +56,7 @@ public class OrderIntegrationTest {
     }
 
     @Test
-    @Commit
+    @Commit // crearea unei comenzi prin post
     public void testCreateOrder_Success() throws Exception {
         Order order = new Order();
         order.setOrderDate(new Date());
@@ -72,7 +72,7 @@ public class OrderIntegrationTest {
     }
 
     @Test
-    @Transactional
+    @Transactional //obtinerea unei comenzi prin get
     @Commit
     public void testCreateAndGetOrder() throws Exception {
         Address address = new Address();
@@ -97,7 +97,7 @@ public class OrderIntegrationTest {
 
 
     @Test
-    @Commit
+    @Commit // test cand comanda nu exista
     public void testGetOrderById_NotFound() throws Exception {
         mockMvc.perform(get("/api/orders/9999"))
                 .andExpect(status().isNotFound());

@@ -2,6 +2,7 @@ package com.example.ecommerceApp.service;
 import com.example.ecommerceApp.model.User;
 import com.example.ecommerceApp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -11,7 +12,8 @@ import java.util.Optional;
 public class UserServiceImpl implements UserService {
 
     private final UserRepository userRepository;
-
+    @Autowired
+    private PasswordEncoder passwordEncoder;
     @Autowired
     public UserServiceImpl(UserRepository userRepository) {
         this.userRepository = userRepository;
@@ -47,7 +49,8 @@ public class UserServiceImpl implements UserService {
 
         User user = new User();
         user.setUsername(username);
-        user.setPassword(password); //
+        user.setPassword(passwordEncoder.encode(password));
+        //
         user.setRole(role.toUpperCase());
 
         return userRepository.save(user);
